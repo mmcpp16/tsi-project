@@ -1,4 +1,5 @@
-from src.LogIn import LogIn
+from LogIn import LogIn
+from utils.input_validation import *
 
 class Main:
     def main():
@@ -7,4 +8,3 @@ class Main:
 
 if __name__ == '__main__':
     Main.main()
-
