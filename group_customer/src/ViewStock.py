@@ -1,19 +1,11 @@
-import csv, os
+import csv
 from utils.TableBuilder import TableBuilder
 #from src.PurchaseOptions import PurchaseOptions
-from input_validation import *
+from utils.InputValidation import *
 
 class ViewStock:
 
-    #I've kept this in from Login - happy to get rid of it if it's not needed
-    def fix_working_directory(self):
-        current_working_directory = os.getcwd()
-        while "test" in current_working_directory or "src" in current_working_directory:
-            os.chdir("../")
-            current_working_directory = os.getcwd()
-
     def read_stock_data(self,file_name):
-        self.fix_working_directory()
         stock = []
         with open("resource/" + file_name, 'r') as file:
             file_reader = csv.DictReader(file)
@@ -32,19 +24,16 @@ class ViewStock:
     
     def select_item(stock):
         while True:
-            row_num = input("Please enter the row number of the item you want to select: ")
-            validate_type(row_num, "int")
-            row_num = int(row_num)
-            validate_range(row_num, 1, len(stock))
-            return stock[row_num-1] #not sure if this implements the input validation properly?
-
+            prompt = "Please enter the row number of the item you want to select"
+            row_num = get_valid_range(prompt, 1, len(stock))
+            return stock[row_num - 1]
     
 
-    def main():
-        stock = read_stock_data("shopstock.csv")
+    def main(self):
+        stock = self.read_stock_data("shopstock.csv")
         self.display_stock(stock)
         selected_item = self.select_item(stock)
-        PurchaseOptions.main(selected_item)
+        #PurchaseOptions.main(selected_item)
     
     if __name__ == "__main__":
         view_stock = ViewStock()
