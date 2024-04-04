@@ -1,4 +1,4 @@
-def validate_type(prompt, type_needed):
+def get_valid_type(prompt, type_needed):
     while True:
         try:
             value = type_needed(input(prompt + ": "))
@@ -7,8 +7,14 @@ def validate_type(prompt, type_needed):
             print("Invalid Input, Try Again.")
 
 
-def validate_range(number, min_value, max_value):
-    if max_value >= number >= min_value:
-        return number
-    else:
-        return validate_range(validate_type("Invalid Range, Try Again", int), min_value, max_value)
+def get_valid_range(prompt, min_value, max_value):
+    number = get_valid_type(prompt, int)
+    while not (max_value >= number >= min_value):
+        prompt_invalid = f"Invalid Range, Must be between {min_value} & {max_value}"
+        number = get_valid_type(prompt_invalid, int)
+    return number
+
+
+if __name__ == '__main__':
+    hello = get_valid_range("Give me your numbers", 1, 10)
+    print("Yipeeeeeee")
