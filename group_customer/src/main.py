@@ -1,9 +1,9 @@
-from src.LogIn import LogIn
+from src.Welcome import Welcome
 
 class Main:
     def main():
-        log_in = LogIn()
-        log_in.log_in()
+        welcome = Welcome()
+        welcome.welcome()
 
 if __name__ == '__main__':
     Main.main()
