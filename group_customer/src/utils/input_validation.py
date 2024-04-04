@@ -7,8 +7,8 @@ def validate_type(prompt, type_needed):
             print("Invalid Input, Try Again.")
 
 
-def valid_range(number, min_value, max_value):
+def validate_range(number, min_value, max_value):
     if max_value >= number >= min_value:
-        return True
+        return number
     else:
-        return False
+        return validate_range(validate_type("Invalid Range, Try Again", int), min_value, max_value)
