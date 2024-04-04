@@ -7,7 +7,7 @@ class Welcome:
                          / /  | |_| | |_) | |_| | | (_| | |   
                          \/    \__,_|_.__/ \__,_|_|\__,_|_|      
                     """)
-        enter = input("                    Welcome to Tubular! Press enter to continue!")
+        enter = input("Welcome to Tubular! Press enter to continue!".rjust(65))
         if enter == "":
             print("Here is the stock:")
             ViewStock.Main()
