@@ -22,8 +22,8 @@ class ViewStock:
         return stock
     
     def display_stock(self, stock):
-        table_headers = ["Row Number", "Item Name", "Item Price", "Available Quantity"]
-        data = [[row["row_number"], row["item_name"], row["item_price"], row["available_quantity"]] for row in stock]
+        table_headers = ["Row Number", "Item Name", "Item Price", "Available Quantity", "Purchase Option"]
+        data = [[row["row_number"], row["item_name"], row["item_price"], row["available_quantity"], row["purchase_option"]] for row in stock]
         table = TableBuilder()
         table.add_headers(table_headers)
         table.add_rows(data)
