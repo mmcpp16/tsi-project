@@ -1,3 +1,4 @@
+from src.ViewStock import ViewStock
 class Welcome:
     def welcome(self):
         print("""
@@ -10,7 +11,7 @@ class Welcome:
         enter = input("Welcome to Tubular! Press enter to continue!".rjust(65))
         if enter == "":
             print("Here is the stock:")
-            ViewStock.Main()
+            ViewStock.main()
         else:
             print("That's not how you enter :(")
             Welcome.welcome(self)
