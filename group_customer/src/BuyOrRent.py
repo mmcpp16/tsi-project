@@ -15,9 +15,13 @@ class BuyOrRent:
             self.add_to_cart(itemname, purchase_quantity, itemprice,purchase_duration)  # where itemname and itemprice are dummys
             choice()
 
-    def add_to_cart(self,itemname,itemquantity,itemprice,rent_duration=14):
-        itemlist = [itemname,itemquantity,itemprice,rent_duration]
-        ViewCart.cart.append(itemlist)
+    def add_to_cart(self,itemname,purchase_quantity,itemprice,purchase_duration=14):
+        if rent_duration != 14:
+            itemprice = itemprice/14 * rent_duration
+        else:
+            rent_duration = "buy"
+        item_details = [itemname, purchase_quantity, itemprice,purchase_duration]
+        ViewCart.cart.append(item_details)
         print("Added to cart")
 
     def choice():
@@ -26,4 +30,4 @@ class BuyOrRent:
             if choice == 1:
                 ViewStock.main()
             elif choice == 2:
-                ViewCart.view_cart()
+                ViewCart.cart()
