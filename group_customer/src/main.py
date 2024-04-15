@@ -1,4 +1,6 @@
-from src.Welcome import Welcome
+#from src.Welcome import Welcome
+import Owner
+import sys
 
 class Main:
     def main():
@@ -6,5 +8,7 @@ class Main:
         welcome.welcome()
 
 if __name__ == '__main__':
-    Main.main()
+    if sys.argv[1] == 'owner':
+        Owner.owner_main()
+    # Main.main()
 
