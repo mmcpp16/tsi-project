@@ -1,17 +1,18 @@
-import csv
 from utils.TableBuilder import TableBuilder
-#from src.PurchaseOptions import PurchaseOptions
+from src.BuyOrRent import BuyOrRent
 from utils.InputValidation import *
+import sqlite3
 
 class ViewStock:
 
-    def read_stock_data(self,file_name):
-        stock = []
-        with open("resource/" + file_name, 'r') as file:
-            file_reader = csv.DictReader(file)
-            for row in file_reader:
-                stock.append(row)
-        return stock
+    def __init__(self):
+        self.db = DatabaseHandler()
+        self.db.connect()
+
+    def read_stock_data(self):
+        cursor = self.db.dbConnection.cursor()
+        cursor.execute("SELECT row_number, item_name, item_price, available_quantity, purchase_option FROM shopstock")
+        return cursor.fetchall()
     
     def display_stock(self, stock):
         table_headers = ["Row Number", "Item Name", "Item Price", "Available Quantity", "Purchase Option"]
@@ -22,18 +23,17 @@ class ViewStock:
         table.build()
 
     
-    def select_item(stock):
-        while True:
-            prompt = "Please enter the row number of the item you want to select"
-            row_num = get_valid_range(prompt, 1, len(stock))
-            return stock[row_num - 1]
+    def select_item(self, stock):
+        prompt = "Please enter the row number of the item you want to select"
+        row_num = get_valid_range(prompt, 1, len(stock))
+        return stock[row_num - 1]
     
 
     def main(self):
-        stock = self.read_stock_data("shopstock.csv")
+        stock = self.read_stock_data()
         self.display_stock(stock)
         selected_item = self.select_item(stock)
-        #PurchaseOptions.main(selected_item)
+        BuyOrRent.main(selected_item)
     
     if __name__ == "__main__":
         view_stock = ViewStock()
