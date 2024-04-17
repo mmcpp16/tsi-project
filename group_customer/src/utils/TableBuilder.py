@@ -30,7 +30,7 @@ class TableBuilder:
         if self.num_column:
             self.rows.append([len(self.rows)+1, *row_data])
         else:
-            self.rows.append([len(self.rows)+1, *row_data])
+            self.rows.append(row_data)
         return self
 
     def add_rows(self, rows_data):
