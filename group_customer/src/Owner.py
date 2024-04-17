@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from utils.TableBuilder import TableBuilder
-from utils.input_validation import get_valid_range
+from utils.input_validation import get_valid_range, get_valid_type
 from utils.DatabaseHandler import DatabaseHandler
 
 def owner_main():
@@ -28,6 +28,21 @@ def view_products():
 
     table.build()
 
+    option = get_valid_range("Which product do you want to edit the quantity of? (Exit with 0)", 0, len(products))
+
+    if option == 0:
+        return owner_main()
+
+    quantity = get_valid_type(f"What do you want to set the quantity of {products[option-1][1]} to?", int)
+
+    cursor.execute("UPDATE Product SET quantity = ? WHERE Product.id = ?", (quantity, option))
+
+    connection.commit()
+
+    print("Product has been updated.")
+
+    owner_main()
+
 def view_order():
     database = DatabaseHandler()
     database.connect()
@@ -36,26 +51,34 @@ def view_order():
     cursor.execute("SELECT * FROM CustomerOrder")
     orders = cursor.fetchall()
 
-    formatted_orders = [(order[0], order[1], order[2], order[3], datetime.fromtimestamp((order[4] / 1000))) for order in orders]
-
     order_table = TableBuilder(max_content_per_page=1000, num_column=False) \
         .add_headers(["Order ID", "First Name", "Last Name", "Passphrase", "Collection Date"]) \
-        .add_rows(formatted_orders)
+        .add_rows(orders)
 
     order_table.build()
 
-    answer = get_valid_range("Which order do you wish to view the products for?", 0, len(orders))
+    answer = get_valid_range("Which order do you wish to view the products for? (0 to exit)", 0, len(orders))
+
+    if answer == 0:
+        return owner_main()
 
     cursor.execute("""
-       SELECT Product.name, ProductOrder.quantity, Product.full_price
+       SELECT Product.name ,ProductOrder.quantity, ProductOrder.rent_period, Product.full_price
        FROM ProductOrder
        INNER JOIN Product ON ProductOrder.product_id = Product.id
        WHERE ProductOrder.order_id = ?
        """, str(answer))
     products = cursor.fetchall()
-
-    product_table = (TableBuilder(max_content_per_page=1000, num_column=False)
-        .add_headers(["Product Name", "Quantity", "Price"])
-        .add_rows(products))
-    # Need to add: rental period and do total price equation
+    formatted_products = []
+    for product in products:
+        if product[2] == 0:
+            formatted_products.append([*product, product[1]*product[3]])
+        else:
+            formatted_products.append([*product, round((product[1]/14*product[2])*product[3], 2)])
+    product_table = TableBuilder(max_content_per_page=1000, num_column=False)\
+        .add_headers(["Product Name", "Quantity", "Rent Period", "Unit Price", "Total Price"])\
+        .add_rows(formatted_products)
     product_table.build()
+
+    get_valid_type("Press enter to continue...", str)
+    owner_main()
