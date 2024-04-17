@@ -3,7 +3,6 @@ from utils.InputValidation import *
 from src.ViewCart import view_cart
 
 class BuyOrRent(selected_item):
-
     def buy_or_rent(self,selected_item):
         purchase_quantity = get_valid_range("Enter desired quantity", 1, selected_item[1])
         purchase_method = get_valid_range("Enter 1 to buy or 2 to rent",1,2)
