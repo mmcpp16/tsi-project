@@ -14,11 +14,9 @@ class BuyOrRent(selected_item):
             self.add_to_cart(selected_item[0], purchase_quantity,selected_item[3],purchase_duration)
             view_cart_or_continue
 
-    def add_to_cart(self, selected_item[0], purchase_quantity, selected_item[3], purchase_duration=14):
-        if purchase_duration != 14:
-            itemprice = selected_item[3] / 14 * purchase_duration
-        else:
-            purchase_duration = "buy"
+    def add_to_cart(self, selected_item[0], purchase_quantity, selected_item[3], purchase_duration=0):
+        if purchase_duration != 0:
+            selected_item[3] = selected_item[3] / 14 * purchase_duration
         cart = [selected_item[0], purchase_quantity, selected_item[3], purchase_duration=14]
         view_cart.cart.append(cart)
         print("Added to cart")
