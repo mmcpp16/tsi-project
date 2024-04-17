@@ -8,11 +8,11 @@ class BuyOrRent(selected_item):
         purchase_method = get_valid_range("Enter 1 to buy or 2 to rent",1,2)
         if purchase_method == 1:
             self.add_to_cart(selected_item[0], purchase_quantity, selected_item[3])
-            choice()
+            view_cart_or_continue
         elif purchase_method == 2:
             purchase_duration = get_valid_range("How many days would you like to rent for? Choose between 1 and 7 days.", 1, 7)
             self.add_to_cart(selected_item[0], purchase_quantity,selected_item[3],purchase_duration)
-            choice()
+            view_cart_or_continue
 
     def add_to_cart(self, selected_item[0], purchase_quantity, selected_item[3], purchase_duration=14):
         if purchase_duration != 14:
@@ -23,7 +23,7 @@ class BuyOrRent(selected_item):
         view_cart.cart.append(cart)
         print("Added to cart")
 
-def choice():
+def view_cart_or_continue():
 
     choice = get_valid_range("Enter 1 to continue shopping or 2 to view cart",1,2)
         if choice == 1:
