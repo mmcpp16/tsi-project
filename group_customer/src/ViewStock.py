@@ -5,11 +5,6 @@ from utils.DatabaseHandler import DatabaseHandler
 
 class ViewStock:
 
-    def __init__(self):
-        self.db = DatabaseHandler()
-        self.db.connect()
-
-
     def view_products():
         database = DatabaseHandler()
         database.connect()
@@ -35,7 +30,8 @@ class ViewStock:
     def main(self):
         stock = self.view_products()
         selected_item = self.select_item(stock)
-        BuyOrRent.main(selected_item)
+        buy_or_rent = BuyOrRent()
+        buy_or_rent.main(selected_item)
     
 if __name__ == "__main__":
     view_stock = ViewStock()
