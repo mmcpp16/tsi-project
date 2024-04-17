@@ -29,7 +29,7 @@ class ViewStock:
     def select_item(self, products):
         prompt = "Please enter the row number of the item you want to select"
         row_num = get_valid_range(prompt, 1, len(products))
-        return products[row_num]
+        return products[row_num -1]
     
 
     def main(self):
