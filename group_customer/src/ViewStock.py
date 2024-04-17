@@ -1,7 +1,7 @@
 from utils.TableBuilder import TableBuilder
 from src.BuyOrRent import BuyOrRent
 from utils.InputValidation import *
-import sqlite3
+from utils.DatabaseHandler import DatabaseHandler
 
 class ViewStock:
 
@@ -9,24 +9,26 @@ class ViewStock:
         self.db = DatabaseHandler()
         self.db.connect()
 
-    def read_stock_data(self):
-        cursor = self.db.dbConnection.cursor()
-        cursor.execute("SELECT row_number, item_name, item_price, available_quantity, purchase_option FROM shopstock")
-        return cursor.fetchall()
-    
-    def display_stock(self, stock):
-        table_headers = ["Row Number", "Item Name", "Item Price", "Available Quantity", "Purchase Option"]
-        data = [[row["row_number"], row["item_name"], row["item_price"], row["available_quantity"], row["purchase_option"]] for row in stock]
-        table = TableBuilder()
-        table.add_headers(table_headers)
-        table.add_rows(data)
-        table.build()
+
+def view_products():
+    database = DatabaseHandler()
+    database.connect()
+    connection = database.dbConnection
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM Product")
+    products = cursor.fetchall()
+
+    table = TableBuilder(max_content_per_page=1000, num_column=False) \
+        .add_headers(["Product Number", "Item Name", "Item Price", "Available Quantity"]) \
+        .add_rows(products)
+
+    table.build()
 
     
     def select_item(self, stock):
         prompt = "Please enter the row number of the item you want to select"
-        row_num = get_valid_range(prompt, 1, len(stock))
-        return stock[row_num - 1]
+        row_num = get_valid_range(prompt, 1, len(products))
+        return stock[row_num]
     
 
     def main(self):
