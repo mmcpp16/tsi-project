@@ -10,35 +10,35 @@ class ViewStock:
         self.db.connect()
 
 
-def view_products():
-    database = DatabaseHandler()
-    database.connect()
-    connection = database.dbConnection
-    cursor = connection.cursor()
-    cursor.execute("SELECT * FROM Product")
-    products = cursor.fetchall()
+    def view_products():
+        database = DatabaseHandler()
+        database.connect()
+        connection = database.dbConnection
+        cursor = connection.cursor()
+        cursor.execute("SELECT * FROM Product")
+        products = cursor.fetchall()
 
-    table = TableBuilder(max_content_per_page=1000, num_column=False) \
-        .add_headers(["Product Number", "Item Name", "Item Price", "Available Quantity"]) \
-        .add_rows(products)
+        table = TableBuilder(max_content_per_page=1000, num_column=False) \
+            .add_headers(["Product Number", "Item Name", "Item Price", "Available Quantity"]) \
+            .add_rows(products)
 
-    table.build()
+        table.build()
+        return products 
 
     
-    def select_item(self, stock):
+    def select_item(self, products):
         prompt = "Please enter the row number of the item you want to select"
         row_num = get_valid_range(prompt, 1, len(products))
-        return stock[row_num]
+        return products[row_num]
     
 
     def main(self):
-        stock = self.read_stock_data()
-        self.display_stock(stock)
+        stock = self.view_products()
         selected_item = self.select_item(stock)
         BuyOrRent.main(selected_item)
     
-    if __name__ == "__main__":
-        view_stock = ViewStock()
-        view_stock.main()
+if __name__ == "__main__":
+    view_stock = ViewStock()
+    view_stock.main()
 
     
