@@ -26,6 +26,6 @@ if __name__ == '__main__':
     products_orders = [(1, 1, 5, 0), (1, 3, 2, 5), (1, 7, 1, 5), (1, 8, 1, 0), (1, 10, 1, 5),
                        (2, 2, 1, 0), (2, 3, 2, 5), (2, 7, 1, 5), (2, 10, 1, 5),]
     cursor.executemany("INSERT INTO CustomerOrder (first_name, last_name, passphrase, collection_date) VALUES (?, ?, ?, ?)", customer_orders)
-    cursor.executemany("INSERT INTO ProductOrder (order_id, product_id, quantity, rent_period) VALUES (?, ?, ?, ?)", customer_orders)
+    cursor.executemany("INSERT INTO ProductOrder (order_id, product_id, quantity, rent_period) VALUES (?, ?, ?, ?)", products_orders)
     cursor.executemany("INSERT INTO Product (name, full_price, quantity) VALUES (?, ?, ?)", products)
     connection.commit()
