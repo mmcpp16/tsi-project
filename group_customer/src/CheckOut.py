@@ -5,9 +5,7 @@ from utils.input_validation import get_valid_range
 
 
 def check_out(cart):
-    view_cart(cart)  # Assuming ViewCart is an array of tuples with # (ID) (Name) (Amount) (Price) (Duration)
-
-    prompt = "Do you accept this? \n 1 = Yes \n 0 = No \n"
+    prompt = "Do you accept this price? \n [1] Yes \n [0] No"
     choice = get_valid_range(prompt, 0, 1)
 
     if choice == 1:
