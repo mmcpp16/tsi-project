@@ -23,7 +23,7 @@ def view_products():
     products = cursor.fetchall()
 
     table = TableBuilder(max_content_per_page=1000, num_column=False) \
-        .add_headers(["Product Number", "Item Name", "Item Price", "Available Quantity"]) \
+        .add_headers(["Product Number", "Item Name", "Available Quantity", "Item Price"]) \
         .add_rows(products)
 
     table.build()
@@ -40,6 +40,7 @@ def view_products():
     connection.commit()
 
     print("Product has been updated.")
+    input("Press enter to continue...")
 
     owner_main()
 
@@ -80,5 +81,5 @@ def view_order():
         .add_rows(formatted_products)
     product_table.build()
 
-    get_valid_type("Press enter to continue...", str)
+    input("Press enter to continue...")
     owner_main()
