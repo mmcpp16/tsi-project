@@ -6,7 +6,7 @@ def view_cart(cart):  # Assuming Cart is an array of tuples with # (ID) (Name) (
     headers = ["Item Name", "Quantity", "Price", "Duration"]
     cart_table.add_headers(headers)
 
-    formatted_cart = [(item[1], item[2], item[3], "Life" if item[4] == 0 else item[3]) for item in cart]
+    formatted_cart = [(item[1], item[2], round(item[3], 2), "Life" if item[4] == 0 else item[4]) for item in cart]
 
     cart_table.add_rows(formatted_cart)
     cart_table.build()
