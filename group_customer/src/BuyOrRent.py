@@ -1,6 +1,6 @@
 from utils.input_validation import *
 from src.ViewStock import main
-#from src.ViewCart import view_cart
+from src.ViewCart import view_cart
 
 
 def buy_or_rent(selected_item, cart):
@@ -26,5 +26,4 @@ def view_cart_or_continue(cart):
     if choice == 1:
         main(cart)
     elif choice == 2:
-        print("View Cart")
-        #view_cart(cart)
+        view_cart(cart)
