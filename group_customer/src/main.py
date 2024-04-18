@@ -1,10 +1,8 @@
-from src.Welcome import Welcome
+from src.Welcome import welcome
 
 class Main:
     def main():
-        welcome = Welcome()
-        welcome.welcome()
+        welcome()
 
 if __name__ == '__main__':
     Main.main()
-
