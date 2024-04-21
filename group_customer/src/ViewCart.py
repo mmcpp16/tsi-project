@@ -1,7 +1,10 @@
+from ViewStock import main
 from utils.TableBuilder import *
+from utils.input_validation import get_valid_range
 
 
 def view_cart(cart):  # Assuming Cart is an array of tuples with # (ID) (Name) (Amount) (Price) (Duration)
+    from CheckOut import check_out
     cart_table = TableBuilder(num_column=False)
     headers = ["Item Name", "Quantity", "Price", "Duration"]
     cart_table.add_headers(headers)
@@ -17,6 +20,12 @@ def view_cart(cart):  # Assuming Cart is an array of tuples with # (ID) (Name) (
 
     print(f"Your subtotal is £{subtotal:,.2f}")
 
+    option = get_valid_range("[1] Continue shopping\n[2] Go to checkout", 1, 2)
+
+    if option == 1:
+        main(cart)
+    else:
+        check_out(cart)
 
 #UseCase
 # if __name__ == '__main__':
