@@ -11,9 +11,9 @@ def check_out_main(cart):
     if choice == 1:
         print(
             "Great! We will need some of your information, including a passphrase.\n(This will be required at the pick-up desk.)")
-        first_name = get_valid_string("What is your first name? \t: ")
-        last_name = get_valid_string("What is your last name? \t: ")
-        pass_phrase = get_valid_string("What is your pass phrase \t: ")
+        first_name = get_valid_string("What is your first name? \t: ", 1, 31)
+        last_name = get_valid_string("What is your last name? \t: ", 1, 31)
+        pass_phrase = get_valid_string("What is your pass phrase \t: ", 1, 31)
         collect_time = "2024-04-26 12:00:00"  # temporary implementation
 
         db_helper = DatabaseHelper()
@@ -35,13 +35,14 @@ def check_out_main(cart):
     input("Press enter to return home.")
     welcome()
 
+
 # Example usecase
-# if __name__ == '__main__':
-#     the_cart = [
-#         [0, "Beach Towel", 100, 15.99, 0],
-#         [1, "Sunscreen SPF 50", 50, 8.99, 0],
-#         [2, "Sunglasses", 75, 25.50, 7],
-#         [3, "Beach Umbrella", 30, 29.99, 4],
-#         [4, "Beach Chair", 40, 24.99, 7],
-#     ]
-#     check_out(the_cart)
+if __name__ == '__main__':
+    the_cart = [
+        [0, "Beach Towel", 100, 15.99, 0],
+        [1, "Sunscreen SPF 50", 50, 8.99, 0],
+        [2, "Sunglasses", 75, 25.50, 7],
+        [3, "Beach Umbrella", 30, 29.99, 4],
+        [4, "Beach Chair", 40, 24.99, 7],
+    ]
+    check_out(the_cart)
