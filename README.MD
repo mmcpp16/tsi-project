@@ -27,7 +27,7 @@ In addition, Tubular features an intuitive owner view, empowering shop owners wi
 - We will also look to implement a burndown chart, which can be viewed in stand up. This will allow us to identify our rate of ticket completion compared to the estimations. 
 - PRs can be merged after 2 reviewers have approved it and all review comments have been addressed. Approval is achieved by commenting saying the developer has reviewed and is happy for the code to be merged.
 
-
+![Sprint #1 Burndown](resources/sprint-1-burndown.png)
 ## Class Examples
 
 
