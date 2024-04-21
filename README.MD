@@ -7,7 +7,13 @@ In addition, Tubular features an intuitive owner view, empowering shop owners wi
 
 
 ## Project Architecture
+Here is a general overview of our application:
+![Overview](resources/architecture.png)
 
+Here is our SQLite DB Architecture:
+![Database](resources/database.png)
+
+Throughout the program we pass the `cart` object, this holds the users current items in the cart. We initially were going to add this to the db each time but there would be no way to differentiate it from an actual real order right now if they quit the program mid order so we opted for this attempt. The `cart` object is the same as the return from the db queries, an array of tuples for columns of the db.
 
 ## Retrospective
 ### Format
@@ -29,6 +35,9 @@ In addition, Tubular features an intuitive owner view, empowering shop owners wi
 
 ![Sprint #1 Burndown](resources/sprint-1-burndown.png)
 ## Class Examples
-
+We have a branch for refactored code but this has not been merged yet [#22](https://github.com/mmcpp16/tsi-project/issues/22)
+- [TableBuilder.py](https://github.com/mmcpp16/tsi-project/blob/main/group_customer/src/utils/TableBuilder.py)
+- [ViewStock.py](https://github.com/mmcpp16/tsi-project/blob/main/group_customer/src/ViewStock.py)
+- [DatabaseHelper.py](https://github.com/mmcpp16/tsi-project/blob/main/group_customer/src/utils/DatabaseHelper.py)
 
 ## Doubling Test
