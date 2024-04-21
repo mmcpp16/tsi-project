@@ -1,13 +1,10 @@
 from utils.TableBuilder import TableBuilder
-from utils.input_validation import *
-from utils.DatabaseHandler import DatabaseHandler
+from utils.InputValidation import get_valid_range
+from utils.DatabaseHelper import DatabaseHelper
+
 def view_products():
-    database = DatabaseHandler()
-    database.connect()
-    connection = database.dbConnection
-    cursor = connection.cursor()
-    cursor.execute("SELECT * FROM Product")
-    products = cursor.fetchall()
+    db_helper = DatabaseHelper()
+    products = db_helper.get_all_products()
 
     table = TableBuilder(max_content_per_page=1000, num_column=False) \
         .add_headers(["Product Number", "Item Name", "Item Price", "Available Quantity"]) \
@@ -23,13 +20,10 @@ def select_item(products):
     return products[row_num -1]
 
 
-def main(cart):
-    from src.BuyOrRent import buy_or_rent
+def stock_main(cart):
+    from views.PurchaseView import purchase_main
     stock = view_products()
     selected_item = select_item(stock)
-    buy_or_rent(selected_item, cart)
-    
-if __name__ == "__main__":
-    main()
+    purchase_main(selected_item, cart)
 
     

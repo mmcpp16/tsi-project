@@ -1,9 +1,9 @@
-from src.Owner import owner_main
+from views.OwnerView import owner_main
 import sys
-from src.Welcome import welcome
+from views.WelcomeView import welcome
 
 class Main:
-    def main():
+    def main(self):
         welcome()
 
 if __name__ == '__main__':

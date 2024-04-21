@@ -1,9 +1,9 @@
-from utils.input_validation import *
-from src.ViewStock import main
-from src.ViewCart import view_cart
+from utils.InputValidation import get_valid_range
+from views.StockView import stock_main
+from views.CartView import cart_main
 
 
-def buy_or_rent(selected_item, cart):
+def purchase_main(selected_item, cart):
     purchase_quantity = get_valid_range("Enter desired quantity", 1, selected_item[2])
     purchase_method = get_valid_range("Enter 1 to buy or 2 to rent",1,2)
     if purchase_method == 1:
@@ -21,9 +21,8 @@ def add_to_cart(cart, id, name, purchase_quantity, price, purchase_duration=0):
     print("Added to cart")
 
 def view_cart_or_continue(cart):
-
     choice = get_valid_range("Enter 1 to continue shopping or 2 to view cart",1,2)
     if choice == 1:
-        main(cart)
+        stock_main(cart)
     elif choice == 2:
-        view_cart(cart)
+        cart_main(cart)

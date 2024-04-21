@@ -3,7 +3,7 @@ from utils.DatabaseHandler import DatabaseHandler
 if __name__ == '__main__':
     database = DatabaseHandler()
     database.connect()
-    connection = database.dbConnection
+    connection = database.db_connection
     cursor = connection.cursor()
     cursor.execute("CREATE TABLE IF NOT EXISTS CustomerOrder ( id INTEGER PRIMARY KEY AUTOINCREMENT, first_name VARCHAR(31) NOT NULL, last_name VARCHAR(31) NOT NULL, passphrase VARCHAR(31) NOT NULL, collection_date DATETIME NOT NULL);")
     cursor.execute("CREATE TABLE IF NOT EXISTS ProductOrder ( id INTEGER PRIMARY KEY AUTOINCREMENT, order_id INTEGER NOT NULL, product_id INTEGER NOT NULL, quantity INTEGER NOT NULL, rent_period INTEGER NOT NULL, FOREIGN KEY (order_id) REFERENCES CustomerOrder(id), FOREIGN KEY (product_id) REFERENCES Product(id));")
