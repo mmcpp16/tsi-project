@@ -25,7 +25,18 @@ def check_out(cart):
             )
 
         add_data.add_customer_order(first_name, last_name, pass_phrase, collect_time, new_cart)
+        
+        database = DatabaseHandler()
+        database.connect()
+        connection = database.dbConnection
+        cursor = connection.cursor()
 
+        for cart_item in new_cart:
+            cursor.execute("SELECT quantity FROM Product WHERE Product.id = ?", (str(cart_item[0])))
+            quantity = cursor.fetchone()
+            cursor.execute("UPDATE Product SET quantity = ? WHERE Product.id = ?", (quantity[0] - cart_item[1], cart_item[0]))
+            connection.commit()
+        
         print(f"Thanks {first_name}! Make sure to use the phrase \"{pass_phrase}\" at the pick up desk!")
     else:
         print("Sorry we couldn't accommodate you.")
