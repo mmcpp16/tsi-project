@@ -9,11 +9,10 @@ def check_out(cart):
     choice = get_valid_range(prompt, 0, 1)
 
     if choice == 1:
-        print("Great! We will need some of your info, including a pass phrase.\n(this will be needed at the pick up "
-              "desk)")
-        first_name = input("what is your first name? \t: ")
-        last_name = input("what is your last name? \t: ")
-        pass_phrase = input("what is your pass phrase \t: ")
+        print("Great! We will need some of your information, including a passphrase.\n(This will be required at the pick-up desk.)")
+        first_name = input("What is your first name? \t: ")
+        last_name = input("What is your last name? \t: ")
+        pass_phrase = input("What is your pass phrase \t: ")
         collect_time = "2024-04-26 12:00:00"  # temporary implementation
 
         add_data = DatabaseHelper()
@@ -41,7 +40,7 @@ def check_out(cart):
     else:
         print("Sorry we couldn't accommodate you.")
 
-    input("Press enter to return home")
+    input("Press enter to return home.")
     welcome()
 
 
