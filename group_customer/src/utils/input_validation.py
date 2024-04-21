@@ -7,7 +7,8 @@ def get_valid_type(prompt, type_needed):
             print("Invalid Input, Try Again.")
 
 
-def get_valid_range(prompt, min_value, max_value):
+def get_valid_range(prompt, min_value=1, max_value=31):
+    # 31 is default as it's the largest amount of data that can go on one filed
     number = get_valid_type(prompt, int)
     while not (max_value >= number >= min_value):
         prompt_invalid = f"Invalid Range, Must be between {min_value} & {max_value}"

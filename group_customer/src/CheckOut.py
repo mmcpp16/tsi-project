@@ -12,9 +12,9 @@ def check_out(cart):
     if choice == 1:
         print(
             "Great! We will need some of your information, including a passphrase.\n(This will be required at the pick-up desk.)")
-        first_name = get_valid_string("What is your first name? \t: ", 1, 30)
-        last_name = get_valid_string("What is your last name? \t: ", 1, 30)
-        pass_phrase = get_valid_string("What is your pass phrase \t: ", 1, 30)
+        first_name = get_valid_string("What is your first name? \t: ")
+        last_name = get_valid_string("What is your last name? \t: ")
+        pass_phrase = get_valid_string("What is your pass phrase \t: ")
         collect_time = "2024-04-26 12:00:00"  # temporary implementation
 
         add_data = DatabaseHelper()
