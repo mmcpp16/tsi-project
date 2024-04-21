@@ -14,6 +14,14 @@ def get_valid_range(prompt, min_value, max_value):
         number = get_valid_type(prompt_invalid, int)
     return number
 
+
+def get_valid_string(prompt, min_len, max_len):
+    given_string = input(prompt)
+    while not (min_len >= len(given_string) >= max_len):
+        prompt_invalid = f"Input Must be between {min_len} & {max_len} Characters"
+        given_string = input(prompt_invalid)
+    return given_string
+
 # Use Case:
 # if __name__ == '__main__':
 #     hello = get_valid_range("Give me your numbers", 1, 10)
