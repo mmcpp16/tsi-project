@@ -29,20 +29,19 @@ class TestOwnerView(unittest.TestCase):
     @patch('builtins.input', side_effect=['2'])
     def test_owner_main_view_order(self, mock_input):
         try:
-            with patch('sys.stdout', new=StringIO()) as output:
-                owner_main()
+            owner_main()
         except StopIteration:
+
             # Output only shows inputs for owner_main, there doesn't seem to be a better way to do this
-            self.assertIn("| Order ID | First Name | Last Name | Passphrase   | Collection Date     |", output.getvalue())
+            self.assertEqual('Which order do you wish to view the products for? (0 to exit): ', mock_input.call_args.args[0])
 
     @patch('builtins.input', side_effect=['2', '1'])
     def test_owner_main_view_order_items(self, mock_input):
         try:
-            with patch('sys.stdout', new=StringIO()) as output:
-                owner_main()
+            owner_main()
         except StopIteration:
             # Output only shows inputs for owner_main, there doesn't seem to be a better way to do this
-            self.assertIn("| Order ID | First Name | Last Name | Passphrase   | Collection Date     |", output.getvalue())
+            self.assertIn('Press enter to continue...', mock_input.call_args.args[0])
 
 if __name__ == '__main__':
     unittest.main()
