@@ -8,7 +8,7 @@ class DatabaseHelper:
     def __init__(self):
         database = DatabaseHandler()
         database.connect()
-        self.connection = database.dbConnection
+        self.connection = database.db_connection
         self.cursor = self.connection.cursor()
 
     def get_all_products(self):
@@ -36,6 +36,18 @@ class DatabaseHelper:
 
         self.cursor.executemany("INSERT INTO ProductOrder (order_id, product_id, quantity, rent_period) VALUES (?, ?, ?, ?)", [(customer_order_id, *product) for product in products])
         self.connection.commit()
+
+    def set_stock_quantity(self, product_id, quantity):
+        self.cursor.execute("UPDATE Product SET quantity = ? WHERE Product.id = ?", (quantity, product_id))
+        self.connection.commit()
+
+    def update_quantity_on_order(self, cart):
+        for cart_item in cart:
+            self.cursor.execute("SELECT quantity FROM Product WHERE Product.id = ?", (str(cart_item[0])))
+            quantity = self.cursor.fetchone()
+            self.cursor.execute("UPDATE Product SET quantity = ? WHERE Product.id = ?",
+                           (quantity[0] - cart_item[1], cart_item[0]))
+            self.connection.commit()
 
 if __name__ == '__main__':
     database = DatabaseHelper()

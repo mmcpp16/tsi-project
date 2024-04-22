@@ -1,11 +1,10 @@
-from ViewCart import view_cart
-from Welcome import welcome
+from views.CartView import cart_main
+from views.WelcomeView import welcome
 from utils.DatabaseHelper import DatabaseHelper
-from utils.DatabaseHandler import DatabaseHandler
-from utils.input_validation import get_valid_range, get_valid_string
+from utils.InputValidation import get_valid_range, get_valid_string
 
 
-def check_out(cart):
+def check_out_main(cart):
     prompt = "Do you accept this price? \n [1] Yes \n [0] No"
     choice = get_valid_range(prompt, 0, 1)
 
@@ -17,7 +16,7 @@ def check_out(cart):
         pass_phrase = get_valid_string("What is your pass phrase \t: ", 1, 31)
         collect_time = "2024-04-26 12:00:00"  # temporary implementation
 
-        add_data = DatabaseHelper()
+        db_helper = DatabaseHelper()
         new_cart = []
         # Takes in (Item ID, Quantity, Duration)
         for item in cart:
@@ -25,19 +24,9 @@ def check_out(cart):
                 (item[0], item[2], item[4])
             )
 
-        add_data.add_customer_order(first_name, last_name, pass_phrase, collect_time, new_cart)
+        db_helper.add_customer_order(first_name, last_name, pass_phrase, collect_time, new_cart)
 
-        database = DatabaseHandler()
-        database.connect()
-        connection = database.dbConnection
-        cursor = connection.cursor()
-
-        for cart_item in new_cart:
-            cursor.execute("SELECT quantity FROM Product WHERE Product.id = ?", (str(cart_item[0])))
-            quantity = cursor.fetchone()
-            cursor.execute("UPDATE Product SET quantity = ? WHERE Product.id = ?",
-                           (quantity[0] - cart_item[1], cart_item[0]))
-            connection.commit()
+        db_helper.update_quantity_on_order(new_cart)
 
         print(f"Thanks {first_name}! Make sure to use the phrase \"{pass_phrase}\" at the pick up desk!")
     else:
@@ -56,4 +45,4 @@ if __name__ == '__main__':
         [3, "Beach Umbrella", 30, 29.99, 4],
         [4, "Beach Chair", 40, 24.99, 7],
     ]
-    check_out(the_cart)
+    check_out_main(the_cart)

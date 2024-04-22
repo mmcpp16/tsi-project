@@ -1,7 +1,8 @@
+import os
 import sqlite3
 
 class DatabaseHandler:
-    dbConnection = None
+    db_connection = None
 
     # Singleton code taken for GeeksForGeeks
     def __new__(self):
@@ -10,9 +11,12 @@ class DatabaseHandler:
         return self.instance
 
     def connect(self):
-        if self.dbConnection is not None: return
+        if self.db_connection is not None: return
         try:
-            self.dbConnection = sqlite3.connect("../../resource/database.db")
+            main_dir = os.path.dirname(os.path.abspath(__file__))
+            resource_dir = os.path.normpath(os.path.join(main_dir, "../../resource"))
+            db_path = os.path.join(resource_dir, "database.db")
+            self.db_connection = sqlite3.connect(db_path)
 
         except sqlite3.Error as error:
             print(f"{error.sqlite_errorcode} - {error.sqlite_errorname}\nFailed connecting to the sqlite3 db.")
@@ -24,5 +28,5 @@ if __name__ == '__main__':
     print(database is database2)
     database.connect()
     database2.connect()
-    print(database.dbConnection is database2.dbConnection)
-    print(database.dbConnection is not None)
+    print(database.db_connection is database2.db_connection)
+    print(database.db_connection is not None)

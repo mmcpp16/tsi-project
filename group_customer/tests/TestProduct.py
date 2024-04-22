@@ -1,10 +1,10 @@
 import unittest
-from src.stub_view_products import view_products
-from src.BuyOrRent import add_to_cart
-from src.ViewStock import select_item
+from tests.ViewProductStub import view_products
+from views.PurchaseView import add_to_cart
+from views.StockView import select_item
 from unittest.mock import patch
 
-class MyTestCase(unittest.TestCase):
+class TestProduct(unittest.TestCase):
     #tests if the stub itself works
     def test_view_products(self):
         products = view_products(self)

@@ -1,14 +1,10 @@
-from src.Owner import owner_main
+from views.OwnerView import owner_main
 import sys
-from src.Welcome import welcome
-
-class Main:
-    def main():
-        welcome()
+from views.WelcomeView import welcome
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:
-        Main.main()
+        welcome()
     if sys.argv[1] == 'owner':
         owner_main()
-    Main.main()
+    welcome()
