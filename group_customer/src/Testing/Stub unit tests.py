@@ -16,8 +16,6 @@ class MyTestCase(unittest.TestCase):
             [4, "Beach Umbrella", 9, 3],
         ])
 
-
-
     @patch('builtins.input', side_effect="3")
     #using both mock and stub to test that an item from products can be selected
     def test_select_item(self, mock_input):
@@ -25,8 +23,6 @@ class MyTestCase(unittest.TestCase):
         selected_item = select_item(products)
         self.assertEqual(selected_item, [3, "Sunglasses", 5, 7])
 
-        if __name__ == '__main__':
-            unittest.main()
 
     #tests the adding to cart/price calc
     def test_add_to_cart(self):
