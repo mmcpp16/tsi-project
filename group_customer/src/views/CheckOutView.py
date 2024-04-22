@@ -1,5 +1,5 @@
-from CartView import cart_main
-from WelcomeView import welcome
+from views.CartView import cart_main
+from views.WelcomeView import welcome
 from utils.DatabaseHelper import DatabaseHelper
 from utils.InputValidation import get_valid_range, get_valid_string
 
@@ -45,4 +45,4 @@ if __name__ == '__main__':
         [3, "Beach Umbrella", 30, 29.99, 4],
         [4, "Beach Chair", 40, 24.99, 7],
     ]
-    check_out(the_cart)
+    check_out_main(the_cart)

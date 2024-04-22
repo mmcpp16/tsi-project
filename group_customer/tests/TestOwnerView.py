@@ -1,19 +1,19 @@
 import unittest
 from unittest.mock import patch, MagicMock
 from io import StringIO
-from Owner import owner_main, view_products, view_order
+from views.OwnerView import owner_main
 
 class TestOwnerView(unittest.TestCase):
 
     @patch('builtins.input', side_effect=['1'])
     def test_owner_main_view_products(self, mock_input):
-        with patch('Owner.view_products', MagicMock()) as mock_view_products:
+        with patch('views.OwnerView.view_products', MagicMock()) as mock_view_products:
             owner_main()
             self.assertTrue(mock_view_products.called)
 
     @patch('builtins.input', side_effect=['2'])
     def test_owner_main_view_orders(self, mock_input):
-        with patch('Owner.view_order', MagicMock()) as mock_view_order:
+        with patch('views.OwnerView.view_order', MagicMock()) as mock_view_order:
             owner_main()
             self.assertTrue(mock_view_order.called)
 

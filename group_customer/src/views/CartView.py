@@ -1,10 +1,10 @@
-from StockView import stock_main
+from views.StockView import stock_main
 from utils.TableBuilder import TableBuilder
 from utils.InputValidation import get_valid_range
 
 
 def cart_main(cart):  # Assuming Cart is an array of tuples with # (ID) (Name) (Amount) (Price) (Duration)
-    from CheckOutView import check_out_main
+    from views.CheckOutView import check_out_main
     cart_table = TableBuilder(num_column=False)
     headers = ["Item Name", "Quantity", "Price", "Duration"]
     cart_table.add_headers(headers)

@@ -31,7 +31,7 @@ def view_products():
 
     quantity = get_valid_range(f"What do you want to set the quantity of {products[option-1][1]} to?", 0, math.inf)
 
-    db_helper.set_stock_quantity(quantity, option)
+    db_helper.set_stock_quantity(option, quantity)
 
     print("Product has been updated.")
     input("Press enter to continue...")
