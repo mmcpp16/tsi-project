@@ -34,7 +34,7 @@ Throughout the program we pass the `cart` object, this holds the users current i
 - PRs can be merged after 2 reviewers have approved it and all review comments have been addressed. Approval is achieved by commenting saying the developer has reviewed and is happy for the code to be merged.
 
 ![Sprint #1 Burndown](resources/sprint-1-burndown.png)
-## Class Examples
+## Clean Code Class Examples
 - [TableBuilder.py](https://github.com/mmcpp16/tsi-project/blob/main/group_customer/src/utils/TableBuilder.py)
 - [ViewStock.py](https://github.com/mmcpp16/tsi-project/blob/main/group_customer/src/ViewStock.py)
 - [DatabaseHandler.py](https://github.com/mmcpp16/tsi-project/blob/main/group_customer/src/utils/DatabaseHandler.py)
@@ -43,8 +43,14 @@ Throughout the program we pass the `cart` object, this holds the users current i
 ## Doubling Test
 ### Stub
 - [DatabaseHelperStub.py](https://github.com/mmcpp16/tsi-project/blob/main/group_customer/tests/DatabaseHelperStub.py) (Not implemented in tests)
+This replaces the DB with data structures that would represent the output of the database and manipulated these.
 - [ViewProductStub.py](https://github.com/mmcpp16/tsi-project/blob/main/group_customer/tests/ViewProductStub.py)
+This stubs the output of `StockView` which provides data throughout the program.
     - [TestProduct.py](https://github.com/mmcpp16/tsi-project/blob/main/group_customer/tests/TestProduct.py) (Implements the above)
+    This replaces the `view_products` from ViewStock and test the methods which uses data from this method.
 ### Mocking
 - [TestOwnerView.py](https://github.com/mmcpp16/tsi-project/blob/main/group_customer/tests/TestOwnerView.py)
+Mocks user input to see how the program interacts. In addition it uses `MagicMock`to see when a method is called and with what arguments. The first two test checks if a user input of 1 calls the correct views. The 3rd checks if updating stock works well and notifies the user. The 4th check tests the customer order selection prompt comes up. The 5th test comes up checking if after that it allows you to return to the start.
+
 - [TestProduct.py](https://github.com/mmcpp16/tsi-project/blob/main/group_customer/tests/TestProduct.py)
+Mocks user input to see how the program interacts. Further comments in the code itself.
