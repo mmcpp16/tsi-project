@@ -35,9 +35,16 @@ Throughout the program we pass the `cart` object, this holds the users current i
 
 ![Sprint #1 Burndown](resources/sprint-1-burndown.png)
 ## Class Examples
-We have a branch for refactored code but this has not been merged yet [#22](https://github.com/mmcpp16/tsi-project/issues/22)
 - [TableBuilder.py](https://github.com/mmcpp16/tsi-project/blob/main/group_customer/src/utils/TableBuilder.py)
 - [ViewStock.py](https://github.com/mmcpp16/tsi-project/blob/main/group_customer/src/ViewStock.py)
+- [DatabaseHandler.py](https://github.com/mmcpp16/tsi-project/blob/main/group_customer/src/utils/DatabaseHandler.py)
 - [DatabaseHelper.py](https://github.com/mmcpp16/tsi-project/blob/main/group_customer/src/utils/DatabaseHelper.py)
 
 ## Doubling Test
+### Stub
+- [DatabaseHelperStub.py](https://github.com/mmcpp16/tsi-project/blob/main/group_customer/tests/DatabaseHelperStub.py) (Not implemented in tests)
+- [ViewProductStub.py](https://github.com/mmcpp16/tsi-project/blob/main/group_customer/tests/ViewProductStub.py)
+    - [TestProduct.py](https://github.com/mmcpp16/tsi-project/blob/main/group_customer/tests/TestProduct.py) (Implements the above)
+### Mocking
+- [TestOwnerView.py](https://github.com/mmcpp16/tsi-project/blob/main/group_customer/tests/TestOwnerView.py)
+- [TestProduct.py](https://github.com/mmcpp16/tsi-project/blob/main/group_customer/tests/TestProduct.py)
