@@ -19,6 +19,7 @@ def add_to_cart(cart, id, name, purchase_quantity, price, purchase_duration=0):
         price = price / 14 * purchase_duration
     cart.append([id,name, purchase_quantity, price, purchase_duration])
     print("Added to cart")
+    return cart
 
 def view_cart_or_continue(cart):
     choice = get_valid_range("Enter 1 to continue shopping or 2 to view cart",1,2)
